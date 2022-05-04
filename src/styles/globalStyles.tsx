@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
 :root {
     --white: #FFF;
+    --black: #000;
 
     --gray-100: #e1e1e6;
     --gray-300: #a8a8b3;
