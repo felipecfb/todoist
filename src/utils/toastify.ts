@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface ToastProps {
@@ -10,15 +10,11 @@ interface ToastProps {
 
 export const showToast = ({ type, message }: ToastProps) => {
   switch (type) {
-    case "success":
+    case 'success':
       toast.success(message);
       break;
-    case "error":
+    case 'error':
       toast.error(message);
       break;
   }
 };
-
-export default function ToastAnimated() {
-  return <ToastContainer />;
-}
