@@ -14,7 +14,7 @@ export function TaskList(props: TaskListProps) {
         </Check>
         <TaskContent>{props.task}</TaskContent>
         <TaskContent>{props.createdAt.toString()}</TaskContent>
-        <Trash type="button" onClick={props.deleteTask}>
+        <Trash onClick={props.deleteTask}>
           <Icon src={TrashIcon} alt=""  />
         </Trash>
       </Task>
