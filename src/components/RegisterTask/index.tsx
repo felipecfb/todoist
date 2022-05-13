@@ -11,12 +11,10 @@ interface TasksProps {
 }
 
 export function RegisterTask() {
-  const [tasks, setTasks] = useState<TasksProps[]>();
+  const [tasks, setTasks] = useState<TasksProps[] | []>([]);
   const [newTask, setNewTask] = useState("");
 
   const id = uuidv4();
-  console.log(tasks);
-
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setNewTask(e.target.value);
@@ -31,10 +29,8 @@ export function RegisterTask() {
       ready: false,
     };
 
-    tasks === undefined ? setTasks([createNewTask]) : setTasks([...tasks, createNewTask])
-
+    setTasks([...tasks, createNewTask])
     setNewTask("");
-    console.log(tasks);
   }
 
   return (
