@@ -14,18 +14,22 @@ export const Task = styled.div`
   padding-bottom: 1rem;
 `
 
-export const Check = styled.div`
+export const Check = styled.a`
   padding: 0.4rem;
   border: 1px solid #000;
   cursor: pointer;
-`
 
-export const IconCheck = styled.img`
-  max-width: 10px;
+  img {
+    max-width: 10px;
+  }
 `
 
 export const TaskContent = styled.div`
   font-size: calc(1rem + 0.15vw);
+`
+
+export const Trash = styled.a`
+  cursor: pointer;
 `
 
 export const Icon = styled.img`

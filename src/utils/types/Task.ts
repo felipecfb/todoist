@@ -1,10 +1,8 @@
-import { MouseEventHandler } from "react";
-
 export interface TaskListProps {
-  check: MouseEventHandler<HTMLImageElement> | undefined;
-  deleteTask: React.MouseEventHandler<HTMLImageElement> | undefined;
+  checkTask: (id: string | any) => void;
+  deleteTask: (id: string | any) => void;
   task: string;
-  createdAt: Date;
+  createdAt: string;
   ready: boolean;
 }
 
@@ -17,6 +15,6 @@ export interface RegisterTaskProps {
 export interface TasksProps {
   id: string;
   task: string;
-  createdAt: Date;
+  createdAt: string;
   checked: boolean;
 }
