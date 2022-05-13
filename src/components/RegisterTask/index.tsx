@@ -1,37 +1,51 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from "react";
-import { Button, Container, Form, Input } from "./styles";
-import { v4 as uuidv4 } from 'uuid';
+import { Button, Container, Input } from "./styles";
+import { v4 as uuidv4 } from "uuid";
+
+interface TasksProps {
+    id: string;
+    task: string;
+    createdAt: Date;
+    ready: boolean;
+}
 
 export function RegisterTask() {
-  const [tasks, setTasks] = useState([{}]);
-  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState<TasksProps[]>();
+  const [newTask, setNewTask] = useState("");
 
   const id = uuidv4();
+  console.log(tasks);
 
-  function handleSubmit(e: any) {
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setNewTask(e.target.value);
+  }
+
+  function handleSubmit(e: React.MouseEventHandler<HTMLButtonElement> | any) {
     e.preventDefault();
-    const newTask = {
+    const createNewTask = {
       id: id,
-      task,
+      task: newTask,
       createdAt: new Date(),
+      ready: false,
     };
-    setTasks([...tasks, newTask]);
-    setTask("");
+
+    tasks === undefined ? setTasks([createNewTask]) : setTasks([...tasks, createNewTask])
+
+    setNewTask("");
     console.log(tasks);
   }
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          placeholder="Enter your task"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-        />
-        <Button>Cadastrar</Button>
-      </Form>
+      <Input
+        type="text"
+        placeholder="Enter your task"
+        value={newTask}
+        onChange={handleChange}
+      />
+      <Button onClick={handleSubmit}>Cadastrar</Button>
     </Container>
   );
 }
