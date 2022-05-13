@@ -2,6 +2,7 @@ import { MouseEventHandler } from "react";
 
 export interface TaskListProps {
   check: MouseEventHandler<HTMLImageElement> | undefined;
+  deleteTask: React.MouseEventHandler<HTMLImageElement> | undefined;
   task: string;
   createdAt: Date;
   ready: boolean;

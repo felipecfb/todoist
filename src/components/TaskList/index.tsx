@@ -1,11 +1,9 @@
-import React, { MouseEventHandler, useState } from 'react';
+import React from 'react';
 
 import CheckIcon from '../../assets/check.png';
 import TrashIcon from '../../assets/trash.png';
 import { TaskListProps } from '../../utils/types/Task';
 import { Container, Task, TaskContent, Icon, Check, IconCheck } from './styles';
-
-
 
 export function TaskList(props: TaskListProps) {
   return (
@@ -20,7 +18,7 @@ export function TaskList(props: TaskListProps) {
         </Check>
         <TaskContent>{props.task}</TaskContent>
         <TaskContent>{props.createdAt.toString()}</TaskContent>
-        <Icon src={TrashIcon} alt="" />
+        <Icon src={TrashIcon} alt="" onClick={props.deleteTask} />
       </Task>
     </Container>
   )

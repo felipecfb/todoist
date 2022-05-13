@@ -36,10 +36,6 @@ export default function Home() {
     }
   }
 
-  function handleChecked() {
-    tasks.map((check) => id === check.id);
-  }
-
   return (
     <>
       <Header />
@@ -49,7 +45,7 @@ export default function Home() {
         submit={handleSubmit}
       />
       {tasks.map((values) => (
-        <TaskList task={values.task} createdAt={values.createdAt} ready={values.checked} check={handleChecked} />
+        <TaskList key={values.id} task={values.task} createdAt={values.createdAt} ready={values.checked} check={undefined} deleteTask={undefined} />
       ))}
       <Footer />
     </>
