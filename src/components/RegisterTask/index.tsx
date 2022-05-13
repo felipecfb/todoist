@@ -2,17 +2,19 @@
 import React, { useState } from "react";
 import { Button, Container, Input } from "./styles";
 import { v4 as uuidv4 } from "uuid";
+import Toastify, { showToast } from "../../utils/toastify";
 
 interface TasksProps {
-    id: string;
-    task: string;
-    createdAt: Date;
-    ready: boolean;
+  id: string;
+  task: string;
+  createdAt: Date;
+  ready: boolean;
 }
 
 export function RegisterTask() {
   const [tasks, setTasks] = useState<TasksProps[] | []>([]);
   const [newTask, setNewTask] = useState("");
+  const [message, setMessage] = useState(false);
 
   const id = uuidv4();
 
@@ -29,8 +31,19 @@ export function RegisterTask() {
       ready: false,
     };
 
-    setTasks([...tasks, createNewTask])
-    setNewTask("");
+    function corretTask() {
+      setTasks([...tasks, createNewTask]);
+      setNewTask("");
+      setMessage(true);
+      showToast({ type: "success", message: "Sua task foi criada!" });
+    }
+
+    function incorrectTask() {
+      setMessage(true);
+      showToast({ type: "error", message: "Digite sua task!" });
+    }
+
+    newTask === "" ? incorrectTask() : corretTask();
   }
 
   return (
@@ -42,6 +55,12 @@ export function RegisterTask() {
         onChange={handleChange}
       />
       <Button onClick={handleSubmit}>Cadastrar</Button>
+
+      {
+        message && (
+          <Toastify />
+        )
+      }
     </Container>
   );
 }
